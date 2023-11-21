@@ -1,0 +1,15 @@
+/* scrollbar */
+@import 'simplebar-react/dist/simplebar.min.css';
+
+.formspacer {
+    padding: 7px ;
+    padding-left: 14px;
+}
+
+.birthdatePicker{
+    padding-top:1 px ;
+}
+
+#btn-right-align{
+    text-align: right;
+}
