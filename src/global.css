@@ -11,5 +11,6 @@
 }
 
 #btn-right-align{
-    text-align: right;
+    text-align: center;
+    padding-right:130px;
 }

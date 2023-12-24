@@ -17,7 +17,6 @@ import {
   MenuItem,
   Typography,
   Button,
- 
 } from '@mui/material';
 
 export default function InputAdornments() {
@@ -38,10 +37,9 @@ export default function InputAdornments() {
     memberDate: '',
   });
 
-  
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
+
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     console.log(formdata);
   };
@@ -55,14 +53,33 @@ export default function InputAdornments() {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit} >
       <Typography variant="h4" sx={{ mb: 5 }}>
         Personal Information
       </Typography>
-      <Box component="form" sx={{ flexGrow: 1 }} noValidate autoComplete="on">
-        <TextField sx={{ m: 1, width: '40ch' }} required id="outlined-required" label="Lastname"  name='lastname' onChange={handleChange}/>
+      <Box
+        component="form"
+        sx={{ flexGrow: 1 }}
+        noValidate
+        autoComplete="on"
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          sx={{ m: 1, width: '40ch' }}
+          required
+          id="outlined-required"
+          label="Lastname"
+          name="lastname"
+          onChange={handleChange}
+        />
 
-        <TextField sx={{ m: 1, width: '40ch' }} required id="outlined-required" label="Firstname"name='firstname' onChange={handleChange} />
+        <TextField
+          sx={{ m: 1, width: '40ch' }}
+          required
+          id="outlined-required"
+          label="Firstname"
+          name="firstname"
+          onChange={handleChange}
+        />
 
         <TextField
           sx={{ m: 1, width: '20ch' }}
@@ -70,20 +87,36 @@ export default function InputAdornments() {
           id="outlined-required"
           label="Middle Initial"
           onChange={handleChange}
-          name ='middleinitial'
+          name="middleinitial"
         />
 
-        <TextField sx={{ m: 1, width: '100ch' }} required id="outlined-required" label="Address" name='address' onChange={handleChange} />
-
-        <FormControl sx={{ m: 1, width: '80ch' }}>
-          <InputLabel id="demo-simple-select-label">Subdivision</InputLabel>
+        <TextField
+          sx={{ m: 1, width: '81.5ch' }}
+          required
+          id="outlined-required"
+          label="Address"
+          name="address"
+          onChange={handleChange}
+        />
+       <FormControl sx={{ m: 1, width: '20ch' }}>
+          <InputLabel id="demo-simple-select-label">Age</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={formdata.subdivision}
-            label="Subdivision"
-            onClick={handleChange}
+            value={formdata.age}
+            label="Age"
+            onChange={handleChange}
+            name="age"
           >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+
+        <FormControl sx={{ m: 1, width: '80ch' }}>
+          <InputLabel id="demo-simple-select-label">Subdivision</InputLabel>
+          <Select value={formdata.subdivision} label="Subdivision" onClick={handleChange}>
             <MenuItem value={1}>San Isidro Heights</MenuItem>
             <MenuItem value={2}>Centennial</MenuItem>
             <MenuItem value={3}>Saint Isidore Village</MenuItem>
@@ -100,7 +133,7 @@ export default function InputAdornments() {
           required
           id="outlined-required"
           label="Barangay"
-          name='barangay'
+          name="barangay"
         />
 
         <TextField
@@ -109,7 +142,7 @@ export default function InputAdornments() {
           required
           id="outlined-required"
           label="Municipal"
-          name='municipal'
+          name="municipal"
         />
 
         <TextField
@@ -118,26 +151,9 @@ export default function InputAdornments() {
           required
           id="outlined-required"
           label="Province"
-          name='province'
+          name="province"
         />
-
-        <FormControl sx={{ m: 1, width: '40ch' }}>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={formdata.age}
-            label="Age"
-            onChange={handleChange}
-            name='age'
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl sx={{ m: 1, width: '60ch' }}>
+         <FormControl sx={{ m: 1, width: '40ch' }}>
           <InputLabel id="demo-simple-select-label">Civil Status</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -154,48 +170,64 @@ export default function InputAdornments() {
         <Grid className="formspacer" container spacing={2}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer sx={{ m: 1, width: '40ch' }} components={['DatePicker']}>
-              <DatePicker label="Basic date picker" />
+              <DatePicker label="BirthDate" />
             </DemoContainer>
           </LocalizationProvider>
           <FormControlLabel
             sx={{ m: 1, width: '20ch' }}
             required
-            control={<Checkbox name ='isMember'defaultChecked sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />}
+            control={
+              <Checkbox
+                name="isMember"
+                defaultChecked
+                sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+              />
+            }
             label="isMember"
           />
           <FormControlLabel
             sx={{ m: 1, width: '20ch' }}
             required
-            control={<Checkbox name='isActive' defaultChecked sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />}
+            control={
+              <Checkbox
+                name="isActive"
+                defaultChecked
+                sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }}
+              />
+            }
             label="isActive"
           />
         </Grid>
         <Grid className="formspacer" container spacing={2}>
-        <FormControl sx={{ m: 1, width: '60ch' }}>
-          <InputLabel id="demo-simple-select-label">Lifegroup Leader</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={formdata.networkHead}
-            label="Lifegroup Leader"
-            onChange={handleChange}
-            name='lifegroupleader'
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <FormControl sx={{ m: 1, width: '40ch' }}>
+            <InputLabel id="demo-simple-select-label">Lifegroup Leader</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={formdata.networkHead}
+              label="Lifegroup Leader"
+              onChange={handleChange}
+              name="lifegroupleader"
+            >
+              <MenuItem value={1}>Ten</MenuItem>
+              <MenuItem value={2}>Twenty</MenuItem>
+              <MenuItem value={3}>Thirty</MenuItem>
+            </Select>
           </FormControl>
-         
-      </Grid>
-       
-      <div id='btn-right-align'>
-          <Button  sx={{ m: 5, width: '20ch' ,length:'12ch' }} variant="contained" size="large">
-            Large
+          <Grid sx={{ m: 1, width: '40ch'}}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer sx= {{ padding:'0'}} components={['DatePicker']}>
+                <DatePicker label="Date First Attended" />
+              </DemoContainer>
+            </LocalizationProvider>
+          </Grid>
+        </Grid>
+        <div id="btn-right-align">
+          <Button sx={{ m: 5, width: '20ch', length: '12ch'}} variant="contained" size="large">
+            SUBMIT
           </Button>
         </div>
       </Box>
-      </form>
     </Container>
   );
 }
