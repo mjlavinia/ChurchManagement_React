@@ -34,4 +34,3 @@ export default function TableNoData({ query }) {
 TableNoData.propTypes = {
   query: PropTypes.string,
 };
-

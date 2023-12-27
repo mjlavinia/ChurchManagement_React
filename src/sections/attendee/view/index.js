@@ -1,1 +1,1 @@
-export { default as attendeeView } from './attendee-view';
+export { default as attendeeView } from './add/attendee-view';

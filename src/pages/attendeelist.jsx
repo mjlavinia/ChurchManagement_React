@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import AttendeeView from 'src/sections/attendee/view/add/attendee-view';
+import AttendeeList from 'src/sections/attendee/view/showlist/view/attendeelist-view';
 
 // ----------------------------------------------------------------------
 
-export default function AttendeePage() {
+export default function AttendeeListPage() {
   return (
     <>
       <Helmet>
-        <title> Attendee </title>
+        <title> TEST </title>
       </Helmet>
 
-      <AttendeeView />
+      <AttendeeList />
     </>
   );
 }
