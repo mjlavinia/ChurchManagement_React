@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import AttendeeView from 'src/sections/attendee/view/add/attendee-view';
+import Attendees from 'src/sections/attendee/view/add/attendee-view';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function AttendeePage() {
         <title> Attendee </title>
       </Helmet>
 
-      <AttendeeView />
+      <Attendees/>
     </>
   );
 }
