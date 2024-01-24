@@ -23,21 +23,17 @@ import TableToolBar from 'src/sections/common/table-toolbar';
 import GenericTableHead from 'src/sections/common/generic-table-head';
 import TableEmptyRows from 'src/sections/common/table-empty-rows';
 import AttendeeTableRow from '../attendee-table-row';
+
 // ----------------------------------------------------------------------
 
 export default function AttendeeList() {
   const [page, setPage] = useState(0);
-
   const [order, setOrder] = useState('asc');
-
   const [selected, setSelected] = useState([]);
   const [attendeeList, setAttendeeList] = useState([]);
-
   const [orderBy, setOrderBy] = useState('name');
-
   const [filterName, setFilterName] = useState('');
-
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -50,7 +46,8 @@ export default function AttendeeList() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = attendeeList.map((n) => n.lastname);
+      const newSelecteds = dataFiltered.map((n) => n.lastName)
+     
       setSelected(newSelecteds);
       return;
     }
@@ -87,25 +84,25 @@ export default function AttendeeList() {
   const handleFilterByName = (event) => {
     setPage(0);
     setFilterName(event.target.value);
+    console.log(filterName)
   };
 
   const dataFiltered = applyFilter({
     inputData: attendeeList,
     comparator: getComparator(order, orderBy),
     filterValue: filterName,
-    filterColumn: "lastName"
-
-    
+    filterColumn: "lastName"    
   });
+
+
   useEffect(()=> {    
   const fetchAttendeeData = async () => {
-    let baseurl = import.meta.env
    await axios.get('/api/attendee/all')
     .then( (response)  => {
        setAttendeeList(response.data);
      //  console.log(attendeeList);
     })         
-    .catch(function (error) {
+    .catch((error) =>  {
       console.log(error);
     });
   };
@@ -114,10 +111,13 @@ export default function AttendeeList() {
   const notFound = !dataFiltered.length && !!filterName;  
   console.log(dataFiltered);
 
+
+
+
   return (
-    <Container>
+    <Container maxWidth='xl'>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">Attendees</Typography>
 
         <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
           New User
@@ -133,7 +133,7 @@ export default function AttendeeList() {
 
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
+            <Table sx={{ minWidth: 800 }} size='small'>
               <GenericTableHead
                 order={order}
                 orderBy={orderBy}
@@ -146,7 +146,7 @@ export default function AttendeeList() {
                   { id: 'firstName', label: 'FirstName' },
                   { id: 'middleName', label: 'Middlename' },
                   { id: 'ismale', checked: 'Male' , label: 'Male' },
-                  { id: 'idnumber', label:'IdNumber' },
+                  { id: 'iDnumber', label:'IdNumber' },
                 ]}
               />
               
@@ -160,7 +160,9 @@ export default function AttendeeList() {
                       firstName={row.firstName}
                       middleName={row.middleName}
                       ismale={row.ismale}
+                      iDnumber={row.iDnumber}
                       avatarUrl={row.avatarUrl}
+                      id={row.id}
                       selected={selected.indexOf(row.lastName) !== -1}
                       handleClick={(event) => handleClick(event, row.lastName)}
                     />
@@ -170,7 +172,6 @@ export default function AttendeeList() {
                   height={77}
                   emptyRows={emptyRows(page, rowsPerPage, attendeeList.length)}
                 />
-
                 {notFound && <TableNoData query={filterName} />}
               </TableBody>
             </Table>

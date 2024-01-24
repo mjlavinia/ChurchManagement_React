@@ -32,4 +32,6 @@ export default defineConfig({
   preview: {
     port: 3030,
   },
+  build: { //add this property
+    sourcemap: true,}
 });
