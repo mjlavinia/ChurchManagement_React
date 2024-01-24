@@ -15,7 +15,7 @@ export default function TableToolbar({ numSelected, filterName, onFilterName }) 
   return (
     <Toolbar
       sx={{
-        height: 96,
+        height: 98,
         display: 'flex',
         justifyContent: 'space-between',
         p: (theme) => theme.spacing(0, 1, 0, 3),
@@ -35,10 +35,10 @@ export default function TableToolbar({ numSelected, filterName, onFilterName }) 
           onChange={onFilterName}
           placeholder="Search user..."
           startAdornment={
-            <InputAdornment position="start">
+            <InputAdornment position="start" >
               <Iconify
                 icon="eva:search-fill"
-                sx={{ color: 'text.disabled', width: 20, height: 20 }}
+                sx={{ color: 'text.disabled', width: 80, height: 20 }}
               />
             </InputAdornment>
           }
@@ -47,7 +47,8 @@ export default function TableToolbar({ numSelected, filterName, onFilterName }) 
 
       {numSelected > 0 ? (
         <Tooltip title="Delete">
-          <IconButton>
+          <IconButton
+          >
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>

@@ -50,7 +50,7 @@ export default function UserPage() {
     if (event.target.checked) {
       const newSelecteds = users.map((n) => n.name);
       setSelected(newSelecteds);
-      return;
+       return;
     }
     setSelected([]);
   };
@@ -96,7 +96,7 @@ export default function UserPage() {
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
-    <Container>
+    <Container maxWidth='xl'>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Users</Typography>
 
@@ -114,7 +114,7 @@ export default function UserPage() {
 
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
+            <Table sx={{ minWidth: 800 }}  size='small'>
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
@@ -131,7 +131,7 @@ export default function UserPage() {
                   { id: '' },
                 ]}
               />
-              <TableBody>
+              <TableBody size ='12ch'>
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (

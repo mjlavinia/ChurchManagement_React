@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 
 import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
-
+import {Link}  from 'react-router-dom';
 // ----------------------------------------------------------------------
 
 export default function AttendeeTableRow({
@@ -24,6 +24,7 @@ export default function AttendeeTableRow({
   address,
   avatarUrl,
   id,
+  iDnumber,
   ismale,
   handleClick,
 }) {
@@ -33,8 +34,11 @@ export default function AttendeeTableRow({
     setOpen(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = (rowId) => {
     setOpen(null);
+    console.log(rowId);
+  //  this.props.history.push('/attendee/'+ ); // Navigate to the '/about' route
+
   };
 
   return (
@@ -46,7 +50,7 @@ export default function AttendeeTableRow({
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
-          <Avatar alt={name} src={avatarUrl} />
+          <Avatar  src={avatarUrl} />
             <Typography variant="subtitle2" noWrap>
               {lastName}
             </Typography>
@@ -59,8 +63,10 @@ export default function AttendeeTableRow({
 
         <TableCell align="center">{ismale ? 'Yes' : 'No'}</TableCell>
 
-       
+        <TableCell>{iDnumber}</TableCell>
 
+        
+        <TableCell>{id}</TableCell>
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
@@ -78,9 +84,9 @@ export default function AttendeeTableRow({
           sx: { width: 140 },
         }}
       >
-        <MenuItem onClick={handleCloseMenu}>
+        <MenuItem onClick={() =>handleCloseMenu(id)}  component={Link} to={`/attendee/edit/ ${id}` }> 
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
+        Edit 
         </MenuItem>
 
         <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
@@ -98,7 +104,9 @@ AttendeeTableRow.propTypes = {
   ismale: PropTypes.any,
   lastName: PropTypes.any,
   firstName: PropTypes.any,
+  middleName: PropTypes.any,
   selected: PropTypes.any,
   avatarUrl: PropTypes.any,
   id:PropTypes.any,
+  iDnumber:PropTypes.any,
 };

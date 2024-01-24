@@ -24,10 +24,13 @@ export default function Router() {
       children: [
         { element: <IndexPage />, index: true },
         { path: 'user', element: <UserPage /> },
-        { path: 'attendee', element: <AttendeePage /> },
+      
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'attendeelist', element: <AttendeeListPage /> },
+
+        { path: 'attendee/add', element: <AttendeePage /> },
+        { path: 'attendee/edit/:attendeeId', element: <AttendeePage /> },
       ],
     },
     {

@@ -11,6 +11,13 @@
 }
 
 #btn-right-align{
-    text-align: center;
+    text-align: right;
     padding-right:130px;
 }
+tr {
+    height: 20px;
+  }
+  
+  tr td {
+     height: auto !important;
+  }
